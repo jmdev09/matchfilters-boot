@@ -1,4 +1,4 @@
-package com.jm.dev.matchfilters;
+package com.sparksnetworks.task;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
