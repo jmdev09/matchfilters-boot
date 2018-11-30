@@ -125,9 +125,7 @@ button.btn-primary{
   width:100%;
 }
 
-.errors {
-  margin:10px;
-  text-align: center;
+.red {
   color: red;
 }
 

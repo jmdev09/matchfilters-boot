@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Directives Example</title>
+  <title>Profile Matcher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-sanitize.min.js"></script>
@@ -19,7 +19,7 @@
 <body ng-app="App" ng-controller="AppController">
 <nav class="navbar navbar-dark bg-primary">
   <!-- Navbar content -->
-  <h2 class="text-center">Know How Filter Works</h2>
+  <h2 class="text-center">Perfect Match</h2>
 </nav>
 <div class="form-container">
 
@@ -79,10 +79,8 @@
               <input type="range" min="18" max="95" value="50" class="slider" ng-model="data.maxAge.value" id="maxAgeRange">
             </label>
           </div>
-
         </div>
       </div>
-
     </div>
     <div class="row slidecontainer form-group">
       <label class="col-sm-6 col-form-label pt-0">Height(in cm)</label>
@@ -112,6 +110,10 @@
         <input type="range" min="30" max="300" value="40" step="5" class="slider" ng-model="data.distance.value" id="mydistanceRange">
       </div>
     </div>
+
+    <div ng-if="validatedError" class="row slidecontainer">
+      <span class="red">Min shouldn't be greater than max</span>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
@@ -129,7 +131,6 @@
           <li class="list-group-item">Age:- {{user.age}}</li>
           <li class="list-group-item">Height:-{{user.height_in_cm}}</li>
           <li class="list-group-item">Compatibility Score:- {{user.compatibility_score}}</li>
-          <li class="list-group-item">Contacts Exchanged:- {{user.contacts_exchanged}}</li>
           <li class="list-group-item">Favourite:- {{user.favourite}}</li>
           <li class="list-group-item">Religion:-{{user.religion}}</li>
         </ul>

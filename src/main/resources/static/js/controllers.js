@@ -3,6 +3,7 @@ angular.module('App.Controllers')
 // App Controller
     .controller('AppController', ['$scope','CustomerDataService',
         function($scope,CustomerDataService) {
+            $scope.validatedError = false;
             $scope.data={
                 "photo":{
                     "value":"all"
@@ -37,24 +38,14 @@ angular.module('App.Controllers')
             };
 
             $scope.submit = function () {
-                console.log($scope.data);
-                var errors = validate($scope.data);
-                if(errors.length == 0)
+                //console.log($scope.data);
+                if((parseInt($scope.data.minAge.value) > parseInt($scope.data.maxAge.value)) || (parseInt($scope.data.minScore.value) > parseInt($scope.data.maxScore.value)) || (parseInt($scope.data.minHeight.value) > parseInt($scope.data.maxHeight.value))){
+                    $scope.validatedError = true;
+                }else{
+                    $scope.validatedError = false;
                     getFilterData($scope.data);
-                else{
-                    document.querySelector(".errors").innerHTML = "Erorrrrrrr";
-                    document.querySelector(".btn btn-primary").disabled = true;
                 }
             };
-
-            var validate = function (data) {
-                var errors = [];
-                if(parseInt(data.minAge.value) > parseInt(data.maxAge.value)) errors.push("age");
-                if(parseInt(data.minScore.value) > parseInt(data.maxScore.value)) errors.push("score");
-                if(parseInt(data.minHeight.value) > parseInt(data.maxHeight.value)) errors.push("height");
-                return errors;
-
-            }
 
             var getFilterData = function (data) {
                 CustomerDataService.getFilterData(data).then(function (response) {
