@@ -1,100 +1,71 @@
 angular.module('App.Controllers')
 
 // App Controller
-.controller('AppController', ['$scope','CustomerDataService',
-  function($scope,CustomerDataService) {
-      $scope.data={
-        "photo":{
-          "value":"all"
-          },
-          "inContact":{
-          "value":"all"
-          },
-          "favourite":{
-           "value":"all"
-          },
-          "score":{
-          "value":"1"
-          },
-          "age":{
-          "value":"18"
-          },
-          "height":{
-          "value":"135"
-          },
-          "distance":{
-            "value":"300"
-          }
-      };
+    .controller('AppController', ['$scope','CustomerDataService',
+        function($scope,CustomerDataService) {
+            $scope.data={
+                "photo":{
+                    "value":"all"
+                },
+                "inContact":{
+                    "value":"all"
+                },
+                "favourite":{
+                    "value":"all"
+                },
+                "minScore":{
+                    "value":"1"
+                },
+                "maxScore":{
+                    "value":"99"
+                },
+                "minAge":{
+                    "value":"18"
+                },
+                "maxAge":{
+                    "value":"99"
+                },
+                "minHeight":{
+                    "value":"135"
+                },
+                "maxHeight":{
+                    "value":"210"
+                },
+                "distance":{
+                    "value":"300"
+                }
+            };
 
-      CustomerDataService.getFilterData(null).then(function (response) {
-          console.log(response.data);
-          $scope.fetchedData = response.data;
-      });
+            $scope.submit = function () {
+                console.log($scope.data);
+                var errors = validate($scope.data);
+                if(errors.length == 0)
+                    getFilterData($scope.data);
+                else{
+                    document.querySelector(".errors").innerHTML = "Erorrrrrrr";
+                    document.querySelector(".btn btn-primary").disabled = true;
+                }
+            };
 
+            var validate = function (data) {
+                var errors = [];
+                if(parseInt(data.minAge.value) > parseInt(data.maxAge.value)) errors.push("age");
+                if(parseInt(data.minScore.value) > parseInt(data.maxScore.value)) errors.push("score");
+                if(parseInt(data.minHeight.value) > parseInt(data.maxHeight.value)) errors.push("height");
+                return errors;
 
-      $scope.submit = function () {
-        console.log($scope.data);
-        CustomerDataService.getFilterData($scope.data).then(function (response) {
-           console.log(response.data);
-           $scope.fetchedData = response.data;
-        });
-      };
+            }
 
-    // // global error handler:
-    // function _handleError(evt, err) {
-    //   alert('Error: ' + err.process + ' [' + err.statusCode + ', ' + err.error + ']');
-    // }
-    //
-    // $scope.$on('SERVICE_ERROR', angular.bind(this, _handleError));
-  }
-]);
+            var getFilterData = function (data) {
+                CustomerDataService.getFilterData(data).then(function (response) {
+                    console.log(response.data);
+                    $scope.fetchedData = response;
+                });
+            };
 
-// // Store Controller
-// .controller('StoreController', ['$scope', '$timeout', 'CustomerDataService',
-//   function($scope, $timeout, CustomerDataService) {
-//
-//     this.customers = [];
-//     this.report = '';
-//
-//     // fetch customers:
-//     CustomerDataService.getCustomers()
-//       .success(angular.bind(this, function(data) {
-//         this.customers = data.customers;
-//         angular.forEach(this.customers, function(val, key, obj) {
-//           obj[key].reset = reset.bind(obj[key]);
-//         }, this);
-//       }));
-//
-//     function reset() {
-//       this.clicks = 0;
-//       this.selected = false;
-//     }
-//
-//     // reset click count on a customer:
-//     this.resetCustomer = function(idx) {
-//       this.getCustomer(idx).reset();
-//     };
-//
-//     this.getCustomer = function(idx) {
-//       return this.customers[idx];
-//     };
-//
-//     // create report summary:
-//     this.createReport = function() {
-//       this.report = '';
-//       angular.forEach(this.customers, function(item) {
-//         this.report += item.name + ': Updated ' + item.clicks + ' times<br/>';
-//       }, this);
-//     };
-//
-//     // monitor for changes:
-//     $scope.$watch(
-//       angular.bind(this, function() {
-//         return this.customers;
-//       }),
-//       angular.bind(this, this.createReport),
-//       true
-//     );
-//   }
-// ]);
+            (function () {
+                getFilterData(null); // initial request to display all results.
+            })();
+
+        }
+    ]);

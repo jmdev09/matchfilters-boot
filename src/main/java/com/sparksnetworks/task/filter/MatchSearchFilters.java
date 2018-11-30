@@ -1,6 +1,6 @@
 package com.sparksnetworks.task.filter;
 
-import com.sparksnetworks.task.model.MatcherSearchCriteria;
+import com.sparksnetworks.task.model.MatchSearchCriteria;
 import com.sparksnetworks.task.model.Profile;
 import org.springframework.stereotype.Component;
 
@@ -16,28 +16,28 @@ import java.util.List;
 public class MatchSearchFilters {
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> ageFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> ageFilter;
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> contactFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> contactFilter;
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> favouriteFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> favouriteFilter;
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> photoFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> photoFilter;
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> heightFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> heightFilter;
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> distanceFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> distanceFilter;
 
     @Resource
-    private MatchFilter<Profile,MatcherSearchCriteria> scoreFilter;
+    private MatchFilter<Profile,MatchSearchCriteria> scoreFilter;
 
     @Resource
-    private List<MatchFilter<Profile,MatcherSearchCriteria>> filters;
+    private List<MatchFilter<Profile,MatchSearchCriteria>> filters;
 
     @PostConstruct
     public void init(){
@@ -51,7 +51,7 @@ public class MatchSearchFilters {
         filters.add(scoreFilter);
     }
 
-    public List<Profile> filter(List<Profile> profiles, MatcherSearchCriteria criteria){
+    public List<Profile> filter(List<Profile> profiles, MatchSearchCriteria criteria){
         for (MatchFilter filter: filters){
             profiles = filter.filter(profiles,criteria);
         }

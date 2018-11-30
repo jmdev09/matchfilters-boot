@@ -19,7 +19,6 @@ public class Profile implements Serializable {
     @JsonProperty("job_title")
     private String jobTitle;
 
-
     @JsonProperty("height_in_cm")
     private int heightInCm;
 
@@ -33,7 +32,7 @@ public class Profile implements Serializable {
     private double compatabilityScore;
 
     @JsonProperty("contacts_exchanged")
-    private int contactsExcahnged;
+    private int contactsExchanged;
 
     @JsonProperty("favourite")
     private boolean favourite;
@@ -90,12 +89,12 @@ public class Profile implements Serializable {
         this.compatabilityScore = compatabilityScore;
     }
 
-    public int getContactsExcahnged() {
-        return contactsExcahnged;
+    public int getContactsExchanged() {
+        return contactsExchanged;
     }
 
-    public void setContactsExcahnged(int contactsExcahnged) {
-        this.contactsExcahnged = contactsExcahnged;
+    public void setContactsExchanged(int contactsExchanged) {
+        this.contactsExchanged = contactsExchanged;
     }
 
     public boolean isFavourite() {

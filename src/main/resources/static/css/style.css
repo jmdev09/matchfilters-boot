@@ -78,7 +78,7 @@ button {
 
 .form-container{
   margin:25px auto;
-  max-width: 500px;
+  max-width: 750px;
   padding:25px;
 }
 .pt-0{
@@ -91,34 +91,43 @@ button {
   position: relative;
   right: 5px;
   top: 2px;
-  }
+}
 .col-sm-6 .badge-pill{
   position: absolute;
   right: 18px;
-  top: -15px;
-}  
+  top: 0px;
+}
+.distance-wrapper .badge-pill{
+  top:-15px;
+}
 .slidecontainer{
   margin-top: 20px;
 }
 .no-image-avail{
-    background: #808080b0;
-    font-size: 20px;
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    padding: 25px;
-    border-radius: 5px;
+  background: #808080b0;
+  font-size: 20px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  padding: 25px;
+  border-radius: 5px;
 }
 .navbar h2{
   margin: 5px auto;
-    color: #fff;
+  color: #fff;
 }
 button.btn-primary{
   display: block;
   width:100px;
   margin: 0 auto;
 }
-
-.card{
-  margin-top: 15px;
+.slidecontainer label{
+  width:100%;
 }
+
+.errors {
+  margin:10px;
+  text-align: center;
+  color: red;
+}
+

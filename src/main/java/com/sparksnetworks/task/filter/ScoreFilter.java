@@ -1,33 +1,40 @@
 package com.sparksnetworks.task.filter;
 
-import com.sparksnetworks.task.model.MatcherSearchCriteria;
+import com.sparksnetworks.task.model.MatchSearchCriteria;
 import com.sparksnetworks.task.model.Profile;
+import com.sparksnetworks.task.util.FieldUtils.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sparksnetworks.task.util.FieldUtils.isNotNull;
+import static com.sparksnetworks.task.util.FieldUtils.isNull;
+
 /*
  * @author Maroju, Jithender on 28/11/18
  */
 @Component
-public class ScoreFilter implements MatchFilter<Profile,MatcherSearchCriteria> {
+public class ScoreFilter implements MatchFilter<Profile,MatchSearchCriteria> {
 
     @Override
-    public List<Profile> filter(List<Profile> profiles, MatcherSearchCriteria criteria) {
-        if(criteria == null || (criteria.getMinScore() == null && criteria.getMaxAge() == null)) return profiles;
-        List<Profile> filteredProfiles = new ArrayList<>();
+    public List<Profile> filter(List<Profile> profiles, MatchSearchCriteria criteria) {
+        if(isNull(criteria) || isNull(criteria.getMinScore(),criteria.getMaxScore())) return profiles;
 
+        Double minScore = criteria.getMinScore() != null ? criteria.getMinScore()/100 : null;
+        Double maxScore = criteria.getMaxScore() != null ? criteria.getMaxScore()/100 : null;
+
+        if(minScore != null && maxScore != null && minScore > maxScore) return profiles;
+
+        List<Profile> filteredProfiles = new ArrayList<>();
         for (Profile profile : profiles){
             double score = profile.getCompatabilityScore();
-            Double minScore = criteria.getMinScore() != null ? Double.parseDouble(criteria.getMinScore())/100 : null;
-            Double maxScore = criteria.getMaxScore() != null ? Double.parseDouble(criteria.getMaxScore())/100 : null;
-            if(minScore != null && maxScore != null){
+            if(isNotNull(minScore,maxScore)){
                 if(score >= minScore && score <= maxScore)
                     filteredProfiles.add(profile);
-            } else if(minScore != null && score >= minScore)
+            } else if(isNotNull(minScore) && score >= minScore)
                 filteredProfiles.add(profile);
-            else if(maxScore != null && score <= maxScore)
+            else if(isNotNull(maxScore) && score <= maxScore)
                 filteredProfiles.add(profile);
         }
         return filteredProfiles;

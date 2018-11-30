@@ -1,57 +1,44 @@
 angular.module('App.Services')
-  .service('CustomerDataService', ['$http', '$rootScope',
-    function($http, $rootScope) {
+    .service('CustomerDataService', ['$http',
+        function($http) {
 
-      // // notify app about service error:
-      // function reportError(process, err) {
-      //   err.process = process;
-      //   $rootScope.$broadcast('SERVICE_ERROR', err);
-      // }
-      //
-      // // mock service to return dummy data:
-      // this.getCustomers = function() {
-      //   var request = $http.get('customer-data.json');
-      //   request.error(function(err) {
-      //     reportError('getCustomers', err);
-      //   });
-      //
-      //   return request;
-      // };
-      //
-      // // service identifier:
-      // this.toString = function() {
-      //   return 'CustomerDataService';
-      // };
+            var getFilterData = function (data) {
+                // var url = data == null ? "http://localhost:9099/home" : "http://localhost:9099/home?" + params;
+                var params = constructParams(data);
+                return $http.get("http://localhost:9099/results?" + params).then(function (result) {
+                    return result.data;
+                });
+            };
 
-        var getFilterData = function (data) {
-            // return $http.get('consumer/?'+"age="+data.age.value+"favourite="+data.favourite.value+"height="+data.height.value+"inContact="+data.inContact.value+"photo="+data.photo.value+"score="+data.score.value).then(function(result){
-            //   // return result.data;
-            //   return $http.get('customer-data.json');
-            // });
-            if(data == null){
-                return $http.get("http://localhost:9099/home");
+            var constructParams = function (data) {
+                if(data == null) return '';
+                var minAge = data.minAge.value;
+                var maxAge = data.maxAge.value;
+                var minHeight = data.minHeight.value;
+                var maxHeight = data.maxHeight.value;
+                var minScore = data.minScore.value;
+                var maxScore = data.maxScore.value;
+                var inContact = data.inContact.value;
+                var photo = data.photo.value;
+                var favourite = data.favourite.value;
+                var distance = data.distance.value;
+
+                var params = "minAge="+minAge+"&maxAge="+maxAge+"&minHeight="+minHeight+"&maxHeight="+maxHeight+"&minScore="+minScore+"&maxScore="+maxScore+"&photo="+photo+"&favourite="+favourite+"&inContact="+inContact;
+
+                // we are ignring distance filter in the intial landing page
+                // because as we are simulating one of the user as logged in user
+                // the distance calculation will takes place and it may result in more than 300 and filterd out
+                // to avoid this, we are ignoring this filter initally to display all the results
+                if(distance != null)
+                    params += "&distance="+distance;
+
+
+                return params;
+            };
+
+            return {
+                getFilterData:getFilterData
             }
-            var params = constructParams(data);
-            return $http.get("http://localhost:9099/home?" + params);
-            // return $http.get('customer-data.json');
-        };
 
-        var constructParams = function (data) {
-            var age = data.age.value;
-            var height = data.height.value;
-            var score = data.score.value;
-            var inContact = data.inContact.value;
-            var photo = data.photo.value;
-            var favourite = data.favourite.value;
-            var distance = data.distance.value;
-
-            var params = "minAge="+age+"&minHeight="+height+"&minScore="+score+"&photo="+photo+"&favourite="+favourite+"&distance="+distance;
-            return params;
         }
-
-        return {
-          getFilterData:getFilterData
-        }
-
-    }
-  ]);
+    ]);

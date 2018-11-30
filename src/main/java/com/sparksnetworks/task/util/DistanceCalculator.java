@@ -1,11 +1,21 @@
 package com.sparksnetworks.task.util;
 
+import com.sparksnetworks.task.model.City;
+import com.sparksnetworks.task.model.Profile;
+
 /**
  * @author Maroju, Jithender on 28/11/18
  */
 public class DistanceCalculator {
 
-    public static double distance(double lat1, double lon1, double lat2, double lon2) {
+    public static double distance(Profile p1, Profile p2){
+        City c1 = p1.getCity();
+        City c2 = p2.getCity();
+        if(c1 == null || c2 == null) return 0;
+        return distance(c1.getLat(), c1.getLon(), c2.getLat(), c2.getLon());
+    }
+
+    private static double distance(double lat1, double lon1, double lat2, double lon2) {
         if ((lat1 == lat2) && (lon1 == lon2)) return 0;
 
         double theta = lon1 - lon2;
@@ -16,11 +26,5 @@ public class DistanceCalculator {
         dist = dist * 1.609344;  // since we are supporting only in km
         return (dist);
 
-    }
-
-    public static void main(String[] args) {
-
-        System.out.println(DistanceCalculator.distance(50.768036,0.290472,51.509865,-0.11809));
-        System.out.println(DistanceCalculator.distance(50.768036,0.290472,50.768036,0.290472));
     }
 }

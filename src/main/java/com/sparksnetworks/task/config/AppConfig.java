@@ -20,7 +20,7 @@ public class AppConfig {
     RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON));
         restTemplate.getMessageConverters().add(converter);
         return restTemplate;
     }

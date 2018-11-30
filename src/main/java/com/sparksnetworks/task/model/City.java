@@ -36,4 +36,12 @@ public class City implements Serializable {
     public double getLon() {
         return lon;
     }
+
+    public City() {}
+
+    public City(String name, double lat, double lon) {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+    }
 }

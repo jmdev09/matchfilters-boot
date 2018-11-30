@@ -1,9 +1,5 @@
 package com.sparksnetworks.task.filter;
 
-import com.sparksnetworks.task.model.MatcherSearchCriteria;
-import com.sparksnetworks.task.model.Profile;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 /**

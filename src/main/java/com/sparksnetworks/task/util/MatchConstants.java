@@ -11,4 +11,6 @@ public interface MatchConstants {
 
     String ALL = "all";
 
+    int LOGGEDIN_PROFILE_INDEX = 1;
+
 }
