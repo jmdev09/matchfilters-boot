@@ -49,7 +49,9 @@ angular.module('App.Controllers')
 
             var getFilterData = function (data) {
                 CustomerDataService.getFilterData(data).then(function (response) {
-                    console.log(response.data);
+                    console.log(response);
+                    if(response.length == 0) $scope.noResults = true;
+                    else $scope.noResults = false;
                     $scope.fetchedData = response;
                 });
             };

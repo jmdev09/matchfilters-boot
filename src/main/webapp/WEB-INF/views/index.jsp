@@ -17,7 +17,7 @@
 </head>
 
 <body ng-app="App" ng-controller="AppController">
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-dark">
   <!-- Navbar content -->
   <h2 class="text-center">Perfect Match</h2>
 </nav>
@@ -112,12 +112,15 @@
     </div>
 
     <div ng-if="validatedError" class="row slidecontainer">
-      <span class="red">Min shouldn't be greater than max</span>
+      <span class="error">Min shouldn't be greater than max</span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
 <section class="container">
+  <div ng-if="noResults" class="row slidecontainer">
+    <span class="h2">NO RESULTS !!!</span>
+  </div>
   <div class="row">
     <div class="col-sm-4" ng-repeat="user in fetchedData" >
       <div class="card">
@@ -132,6 +135,7 @@
           <li class="list-group-item">Height:-{{user.height_in_cm}}</li>
           <li class="list-group-item">Compatibility Score:- {{user.compatibility_score}}</li>
           <li class="list-group-item">Favourite:- {{user.favourite}}</li>
+          <li class="list-group-item">Contacts Exchanged:- {{user.contacts_exchanged}}</li>
           <li class="list-group-item">Religion:-{{user.religion}}</li>
         </ul>
       </div>
