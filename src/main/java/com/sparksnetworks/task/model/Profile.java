@@ -10,6 +10,8 @@ import java.io.Serializable;
 
 public class Profile implements Serializable {
 
+    private static final long serialVersionUID = 8273345667361655513L;
+
     @JsonProperty("display_name")
     private String displayName;
 
@@ -119,5 +121,21 @@ public class Profile implements Serializable {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "displayName='" + displayName + '\'' +
+                ", age=" + age +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", heightInCm=" + heightInCm +
+                ", city=" + city +
+                ", mainPhoto='" + mainPhoto + '\'' +
+                ", compatabilityScore=" + compatabilityScore +
+                ", contactsExchanged=" + contactsExchanged +
+                ", favourite=" + favourite +
+                ", religion='" + religion + '\'' +
+                '}';
     }
 }

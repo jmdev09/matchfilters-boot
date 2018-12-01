@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class City implements Serializable {
 
+    private static final long serialVersionUID = 2253361830796117815L;
+
     private String name;
 
     private double lat;
@@ -43,5 +45,14 @@ public class City implements Serializable {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", lat=" + lat +
+                ", lon=" + lon +
+                '}';
     }
 }

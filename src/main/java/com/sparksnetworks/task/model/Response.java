@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Response implements Serializable {
 
+    private static final long serialVersionUID = 8266157173985925491L;
+
     private List<Profile> matches;
 
     public List<Profile> getMatches() {

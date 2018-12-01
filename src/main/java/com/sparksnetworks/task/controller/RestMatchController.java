@@ -26,7 +26,7 @@ public class RestMatchController {
 
     @RequestMapping("/results")
     public List<Profile> home(@ModelAttribute(value="criteria") MatchSearchCriteria criteria){
-        logger.info("Got the Request");
+        logger.info("Got the Request for the criteria : " + criteria);
         return matchServiceImpl.getProfiles(criteria);
     }
 

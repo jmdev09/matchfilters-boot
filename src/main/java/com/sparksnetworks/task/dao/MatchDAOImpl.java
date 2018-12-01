@@ -1,7 +1,10 @@
 package com.sparksnetworks.task.dao;
 
+import com.sparksnetworks.task.controller.RestMatchController;
 import com.sparksnetworks.task.model.*;
 import com.sparksnetworks.task.model.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,8 @@ public class MatchDAOImpl implements MatchDAO {
 
     @Value("${data.fetch.url}")
     private String FETCH_URL;
+
+    private static final Logger logger = LoggerFactory.getLogger(MatchDAOImpl.class);
 
     @Override
     public List<Profile> getAllProfiles() {

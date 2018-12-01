@@ -105,4 +105,19 @@ public class MatchSearchCriteria {
         this.maxAge = maxAge;
     }
 
+    @Override
+    public String toString() {
+        return "MatchSearchCriteria{" +
+                "minAge=" + minAge +
+                ", maxAge=" + maxAge +
+                ", photo='" + photo + '\'' +
+                ", favourite='" + favourite + '\'' +
+                ", inContact='" + inContact + '\'' +
+                ", minScore=" + minScore +
+                ", maxScore=" + maxScore +
+                ", minHeight=" + minHeight +
+                ", maxHeight=" + maxHeight +
+                ", distance=" + distance +
+                '}';
+    }
 }
