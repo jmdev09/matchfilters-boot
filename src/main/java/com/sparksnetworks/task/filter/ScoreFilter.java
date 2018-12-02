@@ -17,6 +17,10 @@ import static com.sparksnetworks.task.util.FieldUtils.isNull;
 @Component
 public class ScoreFilter implements MatchFilter<Profile,MatchSearchCriteria> {
 
+    public ScoreFilter(){
+        System.out.println("Hello");
+    }
+
     @Override
     public List<Profile> filter(List<Profile> profiles, MatchSearchCriteria criteria) {
         if(isNull(criteria) || isNull(criteria.getMinScore(),criteria.getMaxScore())) return profiles;

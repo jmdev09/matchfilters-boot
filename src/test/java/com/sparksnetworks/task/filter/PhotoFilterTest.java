@@ -31,9 +31,7 @@ public class PhotoFilterTest {
 
     @Before
     public void init(){
-        initMocks(this);
         photoFilter = new PhotoFilter();
-
     }
 
     @Test

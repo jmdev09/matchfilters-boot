@@ -31,9 +31,7 @@ public class ContactFilterTest {
 
     @Before
     public void init(){
-        initMocks(this);
         contactFilter = new ContactFilter();
-
     }
 
     @Test

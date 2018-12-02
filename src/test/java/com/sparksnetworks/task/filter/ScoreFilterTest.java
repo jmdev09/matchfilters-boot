@@ -39,4 +39,27 @@ public class ScoreFilterTest {
         List<Profile> filteredProfiles = scoreFilter.filter(profiles,criteria);
         assertEquals(3,filteredProfiles.size());
     }
+
+    @Test
+    public void testScoreFilterWithMinScore(){
+        criteria = new MatchSearchCriteria();
+        criteria.setMinScore(87.0);
+        List<Profile> filteredProfiles = scoreFilter.filter(profiles,criteria);
+        assertEquals(4,filteredProfiles.size());
+    }
+
+    @Test
+    public void testScoreFilterWithMaxScore(){
+        criteria = new MatchSearchCriteria();
+        criteria.setMaxScore(99.0);
+        List<Profile> filteredProfiles = scoreFilter.filter(profiles,criteria);
+        assertEquals(5,filteredProfiles.size());
+    }
+    @Test
+    public void testScoreFilterWithNoCriteria(){
+        criteria = new MatchSearchCriteria();
+        List<Profile> filteredProfiles = scoreFilter.filter(profiles,criteria);
+        assertEquals(profiles.size(),filteredProfiles.size());
+    }
+
 }

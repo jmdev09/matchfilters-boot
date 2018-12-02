@@ -48,18 +48,18 @@ public class HeightFilterTest {
         criteria = new MatchSearchCriteria();
         criteria.setMinHeight(150);
         List<Profile> filteredProfiles = heightFilter.filter(profiles,criteria);
-        assertEquals(profiles.size(),filteredProfiles.size());
+        assertEquals(4,filteredProfiles.size());
     }
 
     @Test
     public void testHeightFilterWithMaxHeight(){
         criteria = new MatchSearchCriteria();
-        criteria.setMinHeight(150);
+        criteria.setMaxHeight(180);
         List<Profile> filteredProfiles = heightFilter.filter(profiles,criteria);
-        assertEquals(profiles.size(),filteredProfiles.size());
+        assertEquals(5,filteredProfiles.size());
     }
     @Test
-    public void testHeightFilterWithNull(){
+    public void testHeightFilterWithNoCriteria(){
         criteria = new MatchSearchCriteria();
         criteria.setMinHeight(null);
         List<Profile> filteredProfiles = heightFilter.filter(profiles,criteria);

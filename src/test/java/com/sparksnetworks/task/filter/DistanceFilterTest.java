@@ -42,7 +42,13 @@ public class DistanceFilterTest {
         assertEquals(2,filteredProfiles.size());
         Profile loggedInUser = profiles.get(MatchConstants.LOGGEDIN_PROFILE_INDEX);
         assertDistance(loggedInUser,filteredProfiles, 150);
+    }
 
+    @Test
+    public void testDistanceFilterWithNoCriteria(){
+        criteria = new MatchSearchCriteria();
+        List<Profile> filteredProfiles = distanceFilter.filter(profiles,criteria);
+        assertEquals(5,filteredProfiles.size());
     }
 
     private void assertDistance(Profile loggedInProfile, List<Profile> filteredProfiles, double distance) {
