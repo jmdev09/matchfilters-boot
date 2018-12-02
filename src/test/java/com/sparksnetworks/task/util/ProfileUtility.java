@@ -36,8 +36,8 @@ public class ProfileUtility {
         Profile p1 = createProfile("Caroline",41,153,"dummy-url", 0.76,2,true,"Leeds");
         Profile p2 = createProfile("Sharon",47,162,"dummy-url", 0.97,0,false,"Solihull");
         Profile p3 = createProfile("Marta",55,140,"dummy-url", 0.95,0,false,"Eastbourne");
-        Profile p4 = createProfile("Maria",43,175,"dummy-url", 0.88,0,false,"London");
-        Profile p5 = createProfile("Colette",39,177,"dummy-url", 0.89,2,false,"Swindon");
+        Profile p4 = createProfile("Maria",43,175,null, 0.88,0,false,"London");
+        Profile p5 = createProfile("Colette",39,177,null, 0.89,2,false,"Swindon");
 
         profiles.add(p1);
         profiles.add(p2);

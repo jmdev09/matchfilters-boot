@@ -40,7 +40,7 @@ public class PhotoFilterTest {
         criteria = new MatchSearchCriteria();
         criteria.setPhoto(MatchConstants.YES);
         List<Profile> filteredProfiles = photoFilter.filter(profiles,criteria);
-        assertEquals(5,filteredProfiles.size());
+        assertEquals(3,filteredProfiles.size());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class PhotoFilterTest {
         criteria = new MatchSearchCriteria();
         criteria.setPhoto(MatchConstants.NO);
         List<Profile> filteredProfiles = photoFilter.filter(profiles,criteria);
-        assertEquals(0,filteredProfiles.size());
+        assertEquals(2,filteredProfiles.size());
     }
 
     @Test
