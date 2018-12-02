@@ -36,7 +36,6 @@ public class ContactFilterTest {
 
     @Test
     public void testContactFilterForYes(){
-
         criteria = new MatchSearchCriteria();
         criteria.setInContact(MatchConstants.YES);
         List<Profile> filteredProfiles = contactFilter.filter(profiles,criteria);
@@ -45,7 +44,6 @@ public class ContactFilterTest {
 
     @Test
     public void testContactFilterForNo(){
-        profiles = ProfileUtility.getProfiles();
         criteria = new MatchSearchCriteria();
         criteria.setInContact(MatchConstants.NO);
         List<Profile> filteredProfiles = contactFilter.filter(profiles,criteria);
@@ -54,7 +52,6 @@ public class ContactFilterTest {
 
     @Test
     public void testContactFilterForAll(){
-        profiles = ProfileUtility.getProfiles();
         criteria = new MatchSearchCriteria();
         criteria.setInContact(MatchConstants.ALL);
         List<Profile> filteredProfiles = contactFilter.filter(profiles,criteria);

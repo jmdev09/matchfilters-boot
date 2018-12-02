@@ -45,7 +45,6 @@ public class PhotoFilterTest {
 
     @Test
     public void testContactFilterForNo(){
-        profiles = ProfileUtility.getProfiles();
         criteria = new MatchSearchCriteria();
         criteria.setPhoto(MatchConstants.NO);
         List<Profile> filteredProfiles = photoFilter.filter(profiles,criteria);
@@ -54,7 +53,6 @@ public class PhotoFilterTest {
 
     @Test
     public void testContactFilterForAll(){
-        profiles = ProfileUtility.getProfiles();
         criteria = new MatchSearchCriteria();
         criteria.setPhoto(MatchConstants.ALL);
         List<Profile> filteredProfiles = photoFilter.filter(profiles,criteria);
