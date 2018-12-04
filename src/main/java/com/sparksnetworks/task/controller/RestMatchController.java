@@ -2,7 +2,7 @@ package com.sparksnetworks.task.controller;
 
 import com.sparksnetworks.task.model.MatchSearchCriteria;
 import com.sparksnetworks.task.model.Profile;
-import com.sparksnetworks.task.service.MatchServiceImpl;
+import com.sparksnetworks.task.service.MatchService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class RestMatchController {
     private static final Logger logger = LoggerFactory.getLogger(RestMatchController.class);
 
     @Autowired
-    private MatchServiceImpl matchServiceImpl;
+    private MatchService matchService;
 
     @RequestMapping("/results")
     public List<Profile> home(@ModelAttribute(value="criteria") MatchSearchCriteria criteria){
         logger.info("Got the Request for the criteria : " + criteria);
-        return matchServiceImpl.getProfiles(criteria);
+        return matchService.getProfiles(criteria);
     }
 
 }

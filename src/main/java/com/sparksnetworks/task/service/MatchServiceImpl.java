@@ -1,7 +1,6 @@
 package com.sparksnetworks.task.service;
 
-import com.sparksnetworks.task.controller.RestMatchController;
-import com.sparksnetworks.task.dao.MatchDAOImpl;
+import com.sparksnetworks.task.dao.MatchDAO;
 import com.sparksnetworks.task.filter.MatchSearchFilters;
 import com.sparksnetworks.task.model.MatchSearchCriteria;
 import com.sparksnetworks.task.model.Profile;
@@ -20,7 +19,7 @@ import java.util.List;
 public class MatchServiceImpl implements MatchService {
 
     @Autowired
-    private MatchDAOImpl matchDAOImpl;
+    private MatchDAO matchDAO;
 
     @Autowired
     private MatchSearchFilters searchFilters;
@@ -29,7 +28,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public List<Profile> getProfiles(MatchSearchCriteria matchSearchCriteria){
-        List<Profile> profiles =  matchDAOImpl.getAllProfiles();
+        List<Profile> profiles =  matchDAO.getAllProfiles();
         List<Profile> filteredProfiles = searchFilters.filter(profiles, matchSearchCriteria);
         return filteredProfiles;
     }
